@@ -4,15 +4,77 @@
 
 use yii\helpers\Html;
 
-$this->title = 'About';
+$this->title = 'About Us';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-about">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        This is the About page. You may modify the following file to customize its content:
-    </p>
 
-    <code><?= __FILE__ ?></code>
-</div>
+
+<section class="about section">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<img class="img-responsive" src="images/about/about.jpg">
+			</div>
+			<div class="col-md-6">
+				<h2 class="mt-40">About Our Shop</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius enim, accusantium repellat ex autem numquam iure officiis facere vitae itaque.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam qui vel cupiditate exercitationem, ea fuga est velit nulla culpa modi quis iste tempora non, suscipit repellendus labore voluptatem dicta amet?</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam qui vel cupiditate exercitationem, ea fuga est velit nulla culpa modi quis iste tempora non, suscipit repellendus labore voluptatem dicta amet?</p>
+				<a href="#" class="btn btn-main mt-20">Download Company Profile</a>
+			</div>
+		</div>
+		<div class="row mt-40">
+			<div class="col-md-3 text-center">
+				<img src="images/about/awards-logo.png">
+			</div>
+			<div class="col-md-3 text-center">
+				<img src="images/about/awards-logo.png">
+			</div>
+			<div class="col-md-3 text-center">
+				<img src="images/about/awards-logo.png">
+			</div>
+			<div class="col-md-3 text-center">
+				<img src="images/about/awards-logo.png">
+			</div>
+		</div>
+	</div>
+</section>
+<section class="team-members ">
+	<div class="container">
+		<div class="row">
+			<div class="title"><h2>Team Members</h2></div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<div class="team-member text-center">
+					<img class="img-circle" src="images/team/team-1.jpg">
+					<h4>Jonathon Andrew</h4>
+					<p>Founder</p>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="team-member text-center">
+					<img class="img-circle" src="images/team/team-2.jpg">
+					<h4>Adipisci Velit</h4>
+					<p>Developer</p>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="team-member text-center">
+					<img class="img-circle" src="images/team/team-3.jpg">
+					<h4>John Fexit</h4>
+					<p>Shop Manager</p>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="team-member text-center">
+					<img class="img-circle" src="images/team/team-1.jpg">
+					<h4>John Fexit</h4>
+					<p>Shop Manager</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+

@@ -47,7 +47,7 @@ class Product extends \yii\db\ActiveRecord
             [['product_price', 'random_price'], 'number'],
             [['cat_id', 'user_id'], 'integer'],
             [['randem_date', 'date'], 'safe'],
-            [['product_code'], 'unique'],
+            [['product_code'], 'unique','message'=>'الكود مستخدم من قبل'],
             [['name', 'cover_img', 'brand', 'color', 'size', 'gender', 'product_code', 'details'], 'string', 'max' => 250],
             [['cat_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['cat_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['user_id' => 'id']],
@@ -127,4 +127,5 @@ class Product extends \yii\db\ActiveRecord
                 
         return $dataProvider;   
     }
+    
 }

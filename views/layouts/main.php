@@ -162,8 +162,7 @@ AppAsset::register($this);
                          <span class="tf-ion-ios-arrow-down"></span> خدماتنا </a>
 	            <ul class="dropdown-menu">
 					<li><a href="<?= Url::toRoute(['/aboutus']) ?>">من نحن</a></li>
-					<li><a href="<?= Url::toRoute(['/whyus']) ?>">لماذا نحن</a></li>
-					<li><a href="<?= Url::toRoute(['/qanda']) ?>">اساله شائعه</a></li>
+					<li><a href="<?= Url::toRoute(['/faq']) ?>">اساله شائعه</a></li>
                                         <!--<li><a href="<?php // Url::toRoute(['/contact']) ?>">تواصل معنا</a></li>-->
 	            </ul>
 	          </li><!-- / Blog -->

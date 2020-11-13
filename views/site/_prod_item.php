@@ -11,9 +11,31 @@ use app\components\MyStrings;
     }
     //print_r( $img );//die();
 ?>
-
+<!--
 <div class="col-md-4">
-    <a href="<?= Url::to(['view', 'id' => $model->id]); ?>">
+    <a href="<?php // Url::to(['view', 'id' => $model->id]); ?>">
+        <div class="product-item">
+            <div class="product-thumb">
+                <img class="img-responsive" src="<?php // $cover  ?>" alt="product-img" />
+                <div class="preview-meta">
+                    <ul>
+                        <li>
+                            <span  data-toggle="modal" data-target="#product-modal">
+                                    <i class="tf-ion-ios-search-strong"></i>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="product-content">
+                <h4><?php // $model->name ?></h4>
+
+            </div>
+        </div>
+    </a>
+</div>-->
+<div class="col-md-4">
+    <a href="<?= Url::to(['view', 'id' => $model->id]) ?>">
         <div class="product-item">
             <div class="product-thumb">
                 <img class="img-responsive" src="<?= $cover  ?>" alt="product-img" />
@@ -29,7 +51,7 @@ use app\components\MyStrings;
             </div>
             <div class="product-content">
                 <h4><?= $model->name ?></h4>
-
+                <p class="price"><?= $model->random_price ?> جنيه</p>
             </div>
         </div>
     </a>

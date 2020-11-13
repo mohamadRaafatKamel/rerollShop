@@ -161,4 +161,9 @@ class SiteController extends Controller
             'medias' => $medias,
         ]);
     }
+    
+    public function actionFaq()
+    {
+        return $this->render('faq');
+    }
 }

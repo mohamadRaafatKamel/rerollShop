@@ -51,23 +51,9 @@ $config = [
                 '/'=>'/site/index',
                 '/login'=>'/site/login',
                 '/product'=>'/site/product',
-                /*
+                '/aboutus'=>'/site/about',
+                '/faq'=>'/site/faq',
                 
-                '/mymssg'=>'/site/mymssg',
-                '/profile'=>'/site/profile',
-                '/addcar'=>'/site/addcar',
-                '/editprofile'=>'/site/editprofile',
-                '/logout'=>'/site/logout',
-                '/howlog'=>'/site/howlog',
-                '/allcars'=>'/site/allcars',
-                '/aboutus'=>'/site/aboutus',
-                '/whyus'=>'/site/whyus',
-                '/qanda'=>'/site/qanda',
-                '/contact'=>'/site/contact',
-                '/dealcars'=>'/site/dealcars',
-                '/dealsend'=>'/site/dealsend',
-                 
-                 */
             ],
         ],
         

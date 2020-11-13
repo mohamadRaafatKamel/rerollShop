@@ -11,9 +11,9 @@ $this->title = 'منتجات';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-about">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?php // Html::encode($this->title) ?></h1>
     
-    <div class="col-lg-9 col-md-8 padding-right-30">
+    <!--<div class="col-lg-9 col-md-8 padding-right-30">-->
 
         <div class="row">
             <?php           // print_r($carList);die();
@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             Pjax::end();
             ?>
         </div>
-    </div>
+    <!--</div>-->
     
     
 </div>
