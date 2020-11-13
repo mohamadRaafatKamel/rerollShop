@@ -1,0 +1,163 @@
+<?php
+
+namespace app\controllers;
+
+use Yii;
+use app\models\Product;
+use app\models\ProductSearch;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
+use app\models\Media;
+use yii\web\UploadedFile;
+
+/**
+ * ProductController implements the CRUD actions for Product model.
+ */
+class ProductController extends Controller
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * Lists all Product models.
+     * @return mixed
+     */
+    public function actionIndex()
+    {
+        $searchModel = new ProductSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * Displays a single Product model.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionView($id)
+    {
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+    /**
+     * Creates a new Product model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionCreate()
+    {
+        $model = new Product();
+        $media = new Media();
+        if ($model->load(Yii::$app->request->post())) {
+            
+            $model->user_id = Yii::$app->user->identity->id ;
+            
+            //cover
+            $cover= UploadedFile::getInstance($model, 'cover_img');
+            if(!empty($cover) && $cover->size !== 0 && isset($cover->extension)) {
+                $path = 'prodUser/' . md5(random_bytes(3)) . '.' .$cover->extension ;
+                if($cover->saveAs($path)){
+                    $model->cover_img = $path; 
+                }
+            }
+            
+            if($model->save()){ 
+                 $prodID= Yii::$app->db->getLastInsertID() ;
+                
+                // insert img
+                
+                $images= UploadedFile::getInstances($media, 'path');
+                if(!empty($images[0]) && $images[0]->size !== 0 && isset($images[0]->extension)) {
+                    foreach ($images as $image){
+                        //print_r(Yii::$app->db->getLastInsertID());
+                        $path = 'prodUser/' . $prodID . md5(random_bytes(2)) . '.' .$image->extension ;
+                        if($image->saveAs($path)){
+                            Yii::$app->db->createCommand()->insert('media',[
+                                'product_id'=> $prodID,
+                                'path'=> $path,
+                                'type'=> $image->type,
+                            ])->execute();
+                        }
+                    }
+                }
+                
+                return $this->redirect(['index']);
+            }
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+            'media' => $media,
+        ]);
+    }
+
+    /**
+     * Updates an existing Product model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('update', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Deletes an existing Product model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionDelete($id)
+    {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
+
+    /**
+     * Finds the Product model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Product the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = Product::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+}
